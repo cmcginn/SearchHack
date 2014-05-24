@@ -1,0 +1,24 @@
+﻿@section scripts{
+    
+<script src="~/Scripts/app/searchUrls.js"></script>
+}
+
+<div id="searchUrls" class="row">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="form-group">
+                <select class="form-control" id="selectedSearchType" data-bind="options:availableSearchTypes,value:selectedSearchType,optionsCaption:'Please Select',event:{change:onSearchTypeChanged}"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <textarea class="form-control" data-bind="value:selectedSearchUrls"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <button class="btn btn-primary" data-bind="click:saveSearchUrls">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

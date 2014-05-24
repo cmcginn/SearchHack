@@ -1,0 +1,111 @@
+﻿@model dynamic
+@section scripts{
+
+    <script src="~/Scripts/app/searchSettings.js"></script>
+}
+
+<div class="row">
+    <h2>My Searches</h2>
+</div>
+<div id="searchList" class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach:searchSettingsModel.Searches">
+            <tr>
+                <td>
+                    <div class="col-sm-6" data-bind="visible:!editing()">
+                        <span data-bind="text:Name"></span>
+                    </div>
+                </td>
+                <td>
+
+                    <div class="col-sm-4 col-lg-3" data-bind="visible:!editing()">
+                        <a href="javascript:void(0)" data-bind="click:$parent.editSearch">Edit</a>&nbsp;|
+                        <a href="javascript:void(0)" data-bind="click:$parent.deleteSearch">Delete</a>
+                    </div>
+
+
+                    <div class="row" data-bind="visible:editing">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Name" data-bind="value:Name" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--ko foreach:SearchTerms-->
+                    <div class="row" data-bind="visible:$parent.editing">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" data-bind="value:Term" placeholder="Term" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" data-bind="value:Score" placeholder="Score" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="javascript:void(0)" data-bind="click:function(){$root.removeSearchTerm($parent,$data)}">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    <div class="row term-controls" data-bind="visible:editing">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="col-sm-4 col-lg-2">
+                                    <button class="btn btn-primary" data-bind="click:$parent.addSearchTerm">Add Search Term</button>
+                                </div>
+                                <div class="col-sm-4 col-lg-1">
+                                    <button class="btn btn-primary" data-bind="click:$parent.saveSearch">Save</button>
+                                </div>
+                                <div class="col-sm-4 col-lg-1">
+                                    <button class="btn" data-bind="click:$parent.cancelEditSearch">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+
+        </tbody>
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    <div id="newSearch" class="row" data-bind="visible:showNewSearch">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" data-bind="value:newSearch.name,visible:showNewSearch" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2 col-lg-1" data-bind="click:addSearch,visible:showAddSearch">
+                            <button class="btn btn-primary">New Search</button>
+                        </div>
+                        <div class="col-sm-2 col-lg-1" data-bind="click:saveNewSearch,visible:showNewSearch">
+                            <button class="btn btn-primary">Save</button>
+                        </div>
+                        <div class="col-sm-2 col-lg-1" data-bind="click:cancelAddSearch,visible:showNewSearch">
+                            <button class="btn">Cancel</button>
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+</div>
+
+
+
+
